@@ -1,8 +1,14 @@
-using ConsoleApp1;
+using LanguageExt;
+using static LanguageExt.Prelude;
 
-var list = new Lst<int>([1, 2, 3]);
+Console.WriteLine("Started");
 
-var result = list.Select(x => x * 2)
-                 .Select(x => x + 1);
+
+var q = from _1 in liftEff(async () => await Console.In.ReadLineAsync())
+        from _2 in liftEff(async () => await Console.Out.WriteLineAsync(_1).ToUnit())
+        select _1;
+
+var ret = q.Run();
+
 
 
