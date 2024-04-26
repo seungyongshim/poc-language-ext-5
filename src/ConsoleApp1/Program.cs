@@ -1,8 +1,15 @@
+using System.Diagnostics;
 using ConsoleApp1;
+using LanguageExt;
+using LanguageExt.Sys.Traits;
+using LanguageExt.Traits;
+using static LanguageExt.Prelude;
 
-var list = new Lst<int>([1, 2, 3]);
-
-var result = list.Select(x => x * 2)
-                 .Select(x => x + 1);
+Eff<Runtime, Unit> eff = unitEff;
+eff.Run(env, EnvIO.New());
 
 
+public record Runtime : Has<Eff<Runtime>, ActivitySourceIO>,
+{
+    public K<Eff<Runtime>, ActivitySourceIO> Trait { get; }
+}
