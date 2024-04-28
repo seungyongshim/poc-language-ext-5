@@ -1,15 +1,18 @@
-using System.Diagnostics;
-using ConsoleApp1;
-using LanguageExt;
-using LanguageExt.Sys.Traits;
-using LanguageExt.Traits;
 using static LanguageExt.Prelude;
-
-Eff<Runtime, Unit> eff = unitEff;
-eff.Run(env, EnvIO.New());
+using LanguageExt;
 
 
-public record Runtime : Has<Eff<Runtime>, ActivitySourceIO>,
+var q = from _3 in liftEff(() => throw new NotImplementedException())
+        from _1 in liftIO(Console.In.ReadLineAsync)
+        from _2 in liftIO(() => Console.Out.WriteLineAsync(_1))
+        from _4 in lift(Console.In.ReadLine)
+        select _1;
+
+try
 {
-    public K<Eff<Runtime>, ActivitySourceIO> Trait { get; }
+    q.Run().ThrowIfFail();
+}
+catch(Exception ex)
+{
+    Console.WriteLine($"catch {ex}");
 }
