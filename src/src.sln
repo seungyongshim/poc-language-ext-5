@@ -13,9 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루�
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Understanding.Tests", "Understanding.Tests\Understanding.Tests.csproj", "{DBFE5E38-B8D3-48E3-8EA2-4684B19B2A1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Understanding.Tests", "Understanding.Tests\Understanding.Tests.csproj", "{DBFE5E38-B8D3-48E3-8EA2-4684B19B2A1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Effects", "Effects\Effects.csproj", "{9BC974A9-07A4-4EAC-AF9B-57A8BC7BF9F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Effects", "Effects\Effects.csproj", "{9BC974A9-07A4-4EAC-AF9B-57A8BC7BF9F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{0B122DA2-B30B-4633-8E26-88CB89726A7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,10 @@ Global
 		{9BC974A9-07A4-4EAC-AF9B-57A8BC7BF9F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BC974A9-07A4-4EAC-AF9B-57A8BC7BF9F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BC974A9-07A4-4EAC-AF9B-57A8BC7BF9F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B122DA2-B30B-4633-8E26-88CB89726A7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B122DA2-B30B-4633-8E26-88CB89726A7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B122DA2-B30B-4633-8E26-88CB89726A7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B122DA2-B30B-4633-8E26-88CB89726A7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

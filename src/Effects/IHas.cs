@@ -8,5 +8,5 @@ public interface IHas<RT, TRAIT> : Has<Eff<RT>, TRAIT> where RT : IHas<RT, TRAIT
 {
     protected TRAIT It { get; }
     static Eff<RT, TRAIT> Eff => liftEff<RT, TRAIT>(static rt => rt.It);
-    K<Eff<RT>, TRAIT> Has<Eff<RT>, TRAIT>.Trait => liftEff<RT, TRAIT>(static rt => rt.It);
+    K<Eff<RT>, TRAIT> Has<Eff<RT>, TRAIT>.Trait => Eff;
 }
