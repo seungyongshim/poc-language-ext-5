@@ -15,8 +15,8 @@ var app = builder.Build();
 await app.StartAsync().ConfigureAwait(false);
 
 var q = from _1 in Info("Hello?")
+        from _2 in liftEff(() => throw new Exception("what?!"))
         from _3 in FailEff<Unit>(Error.New("how?!"))
-        from _2 in liftEff(() => throw new Exception("what?!")) 
         select unit;
 
 _ = q.IfLogError().Run(new Runtime(app.Services.GetRequiredService<ILogger<Program>>()), EnvIO.New());
@@ -25,7 +25,7 @@ await app.StopAsync().ConfigureAwait(false);
 
 file interface IRuntime : IHas<IRuntime, ILogger> { }
 
-file readonly record struct Runtime
+file record Runtime
 (
     ILogger Logger
 ) : IRuntime
