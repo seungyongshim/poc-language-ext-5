@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-
+using static LanguageExt.Prelude;
 namespace Effects;
 
 public static class Logger<RT> where RT : IHas<RT, ILogger>
