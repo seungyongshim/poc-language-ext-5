@@ -1,12 +1,11 @@
 global using LanguageExt;
-global using static LanguageExt.Prelude;
 using LanguageExt.Traits;
 
 namespace Effects;
 
-public interface IHas<RT, TRAIT> : Has<Eff<RT>, TRAIT> where RT : IHas<RT, TRAIT>
+public interface IHas<RT, A> : Has<Eff<RT>, A> where RT : IHas<RT, A>
 {
-    protected TRAIT It { get; }
-    static Eff<RT, TRAIT> Eff => liftEff<RT, TRAIT>(static rt => rt.It);
-    K<Eff<RT>, TRAIT> Has<Eff<RT>, TRAIT>.Trait => liftEff<RT, TRAIT>(static rt => rt.It);
+    protected A It { get; }
+    static Eff<RT, A> Eff => StateM.gets<Eff<RT>, RT, A>(static rt => rt.It).As();
+    K<Eff<RT>, A> Has<Eff<RT>, A>.Trait => StateM.gets<Eff<RT>, RT, A>(static rt => rt.It);
 }
