@@ -1,15 +1,19 @@
 global using LanguageExt;
-using LanguageExt.Traits;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Effects;
 
-
-public interface IHas<A>
+public interface IHas
 {
-    protected A It { get; }
+    protected IServiceProvider ServiceProvider { get; }
 }
 
-public interface IHas<RT, A> : IHas<A> where RT : IHas<RT, A>
+public interface IHas<A> : IHas where A: notnull
+{
+    protected A It => ServiceProvider.GetRequiredService<A>();
+}
+
+public interface IHas<RT, A> : IHas<A> where RT : IHas<RT, A> where A : notnull
 {
     static Eff<RT, A> Eff => Prelude.liftEff<RT, A>(rt => rt.It);
 }

@@ -19,7 +19,9 @@ var q = from _1 in InfoEff("Hello?")
         from _3 in FailEff<Unit>(Error.New("how?!"))
         select unit;
 
-_ = q.IfLogErrorEff().Run(new Runtime(app.Services.GetRequiredService<ILogger<Program>>()), EnvIO.New());
+await using var scope = app.Services.CreateAsyncScope();
+
+_ = q.IfLogErrorEff().Run(new Runtime(scope.ServiceProvider), EnvIO.New());
 
 await app.StopAsync().ConfigureAwait(false);
 
@@ -30,8 +32,9 @@ file interface IRuntime : IHas<IRuntime, ILogger>
 
 file record Runtime
 (
-    ILogger Logger
+    IServiceProvider ServiceProvider
 ) : IRuntime
 {
-    ILogger IHas<IRuntime, ILogger>.It => Logger;
+    ILogger IHas<ILogger>.It => ServiceProvider.GetRequiredService<ILogger<Runtime>>();
+    IServiceProvider IHas.ServiceProvider => ServiceProvider;
 }
