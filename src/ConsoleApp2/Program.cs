@@ -25,7 +25,7 @@ _ = q.IfLogErrorEff().Run(new Runtime(scope.ServiceProvider), EnvIO.New());
 
 await app.StopAsync().ConfigureAwait(false);
 
-file interface IRuntime : IHas<IRuntime, ILogger> 
+file interface IRuntime : IHas<IRuntime, ILogger>, IHas<IRuntime, HttpClient>
 {
     
 }
@@ -35,6 +35,7 @@ file record Runtime
     IServiceProvider ServiceProvider
 ) : IRuntime
 {
+    HttpClient IHas<HttpClient>.It { get; } = ServiceProvider.GetRequiredService<IHttpClientFactory>().CreateClient("");
     ILogger IHas<ILogger>.It => ServiceProvider.GetRequiredService<ILogger<Runtime>>();
     IServiceProvider IHas.ServiceProvider => ServiceProvider;
 }

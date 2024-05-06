@@ -15,5 +15,5 @@ public interface IHas<A> : IHas where A: notnull
 
 public interface IHas<RT, A> : IHas<A> where RT : IHas<RT, A> where A : notnull
 {
-    static Eff<RT, A> Eff => Prelude.liftEff<RT, A>(rt => rt.It);
+    static Eff<RT, A> Eff => Prelude.liftEff<RT, A>(static rt => rt.It);
 }
