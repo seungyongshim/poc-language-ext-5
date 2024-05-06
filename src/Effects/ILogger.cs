@@ -7,27 +7,18 @@ using Microsoft.Extensions.Logging;
 using static LanguageExt.Prelude;
 namespace Effects;
 
-public static class Logger<RT> where RT : IHas<RT, ILogger>
+public static class LoggerExtensionsMethod
 {
-    public static Eff<RT, Unit> DebugEff(string? message, params object?[] args) =>
-        from logger in IHas<RT, ILogger>.Eff
+    public static Eff<Unit> DebugEff(this ILogger logger, string? message, params object?[] args) =>
         from _1 in liftEff(() => logger.LogDebug(message, args))
         select unit;
 
-    public static Eff<RT, Unit> InfoEff(string? message, params object?[] args) =>
-        from logger in IHas<RT, ILogger>.Eff
+    public static Eff<Unit> InfoEff(this ILogger logger, string? message, params object?[] args) =>
         from _1 in liftEff(() => logger.LogInformation(message, args))
         select unit;
 
-    public static Eff<RT, T> IfErrorEff<T>(Eff<RT, T> eff) => eff | @catchM(err => true, err => from logger in IHas<RT, ILogger>.Eff
-             from _1 in liftEff(() => logger.LogError(err.ToException(),""))
+    public static Eff<T> IfErrorEff<T>(this ILogger logger, Eff<T> eff) => eff | @catchM(err => true, err =>
+             from _1 in liftEff(() => logger.LogError(err.ToException(), ""))
              from _2 in FailEff<T>(err)
              select _2);
-}
-
-public static class LoggerExtensionMethod
-{
-    public static Eff<RT, T> IfLogErrorEff<RT, T>(this Eff<RT, T> eff)
-        where RT : IHas<RT, ILogger> => Logger<RT>.IfErrorEff(eff);
-    
 }
