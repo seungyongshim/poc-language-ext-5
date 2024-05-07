@@ -22,3 +22,8 @@ public static class LoggerExtensionsMethod
              from _2 in FailEff<T>(err)
              select _2);
 }
+
+public interface IHasLogger<RT> where RT : IHas<ILogger>
+{
+
+}
