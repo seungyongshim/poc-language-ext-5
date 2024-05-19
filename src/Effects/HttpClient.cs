@@ -7,9 +7,7 @@ public static class HttpClientExtensionMethod
 {
     public static Eff<HttpResponseMessage> GetEff(this HttpClient httpClient, string path) =>
         from ___ in unitEff
-        let f1 = from res in liftEff(() => httpClient.GetAsync(path).ToValue())
-                 from _2 in Resource.use<Eff, HttpResponseMessage>(() => res)
-                 select res
+        let f1 = use(liftIO(() => httpClient.GetAsync(path))).As()
         from res in f1.RetryWhile(Schedule.recurs(5), err => err.ToException() switch
         {
             HttpRequestException => true,

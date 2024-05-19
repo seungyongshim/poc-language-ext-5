@@ -1,47 +1,43 @@
-using Effects;
-using LanguageExt.Traits;
-using Microsoft.Extensions.Logging;
-
 namespace Understanding.Tests;
 
 public class EffSpecs
 {
     [Fact]
-    public void ReleaseWithExceptionAndRuntime()
+    public void UseOnce()
     {
-        var q = from _1 in IHas<Runtime, DisposableClass>.Eff
-                from _2 in Resource.use<Eff, DisposableClass>(() => _1)
-                from _3 in Resource.use<Eff, DisposableClass>(() => _1)
-                select unit;
+        var q = from __ in unitEff
+                from _2 in use(() => new DisposableClass())
+                select _2;
 
-        var r = q.Run(new Runtime
-        (
-            new DisposableClass(),
-            LoggerFactory.Create(a => { }).CreateLogger("")
-        ), EnvIO.New()).ThrowIfFail();
+        var r = q.Run().ThrowIfFail();
+
+        Assert.True(r.IsDisposed);
+    }
+
+    [Fact]
+    public void RepeatUse()
+    {
+        var q = from __ in unitEff
+                from _2 in repeat(Schedule.recurs(2), use(() => new DisposableClass()))
+                select _2;
+
+        var r = q.Run().ThrowIfFail();
+
+        Assert.True(r.IsDisposed);
     }
 }
 
 public class DisposableClass : IDisposable
 {
-    bool disposed = false;
+    public bool IsDisposed { get; set; } = false;
 
-    public void Dispose() => disposed = disposed switch
+    public void Dispose() => IsDisposed = IsDisposed switch
     {
         false => true,
         true => throw new ObjectDisposedException(nameof(DisposableClass)),
     };
 }
 
-public readonly record struct Runtime
-(
-    DisposableClass HttpClient,
-    ILogger Logger
-) : IHas<Runtime, ILogger>,
-    IHas<Runtime, DisposableClass>
-{
-    ILogger IHas<ILogger>.It => Logger;
-    DisposableClass IHas<DisposableClass>.It => HttpClient;
-}
+
 
 
