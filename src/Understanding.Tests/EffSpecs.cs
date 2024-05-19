@@ -6,7 +6,7 @@ public class EffSpecs
     public void UseOnce()
     {
         var q = from __ in unitEff
-                from _2 in use(() => new DisposableClass())
+                from _2 in local<IO, DisposableClass>(use(() => new DisposableClass())).As()
                 select _2;
 
         var r = q.Run().ThrowIfFail();
@@ -18,7 +18,7 @@ public class EffSpecs
     public void RepeatUse()
     {
         var q = from __ in unitEff
-                from _2 in repeat(Schedule.recurs(2), use(() => new DisposableClass()))
+                from _2 in repeat(Schedule.recurs(1), use(() => new DisposableClass()))
                 select _2;
 
         var r = q.Run().ThrowIfFail();
