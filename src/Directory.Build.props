@@ -10,8 +10,18 @@
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>preview</LangVersion>
+    <Nullable>enable</Nullable>
+    <WarningsAsErrors>Nullable,MA0143</WarningsAsErrors>
+  </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Meziantou.Analyzer" Version="2.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+    <PackageReference Include="LanguageExt.Core" Version="5.0.0-alpha.9" />
     <None Include="$(SolutionDir)..\icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
   <PropertyGroup>
