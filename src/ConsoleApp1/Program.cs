@@ -1,11 +1,18 @@
-using LanguageExt;
 using static LanguageExt.Prelude;
+using LanguageExt;
 
-var q = from _1 in liftEff(Console.In.ReadLineAsync)
+Console.WriteLine("Started");
+
+
+var q = from _1 in liftEff(async () => await Console.In.ReadLineAsync())
         from _2 in liftEff(async () => await Console.Out.WriteLineAsync(_1).ToUnit())
         select _1;
 
-var ret = q.Run();
-
-
-
+try
+{
+    q.Run().ThrowIfFail();
+}
+catch(Exception ex)
+{
+    Console.WriteLine($"catch {ex}");
+}
