@@ -1,4 +1,3 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
@@ -8,7 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.editorconfig = ..\.editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{4FCA2E53-4FEF-4FDD-B3CA-7DE20370F999}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{4FCA2E53-4FEF-4FDD-B3CA-7DE20370F999}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{7ABC31D9-6EF0-4126-8372-A5A6A54F56D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{41759B59-1B33-4F47-9943-F1093562AF74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,10 +19,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41759B59-1B33-4F47-9943-F1093562AF74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41759B59-1B33-4F47-9943-F1093562AF74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41759B59-1B33-4F47-9943-F1093562AF74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41759B59-1B33-4F47-9943-F1093562AF74}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FCA2E53-4FEF-4FDD-B3CA-7DE20370F999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FCA2E53-4FEF-4FDD-B3CA-7DE20370F999}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FCA2E53-4FEF-4FDD-B3CA-7DE20370F999}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FCA2E53-4FEF-4FDD-B3CA-7DE20370F999}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7ABC31D9-6EF0-4126-8372-A5A6A54F56D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ABC31D9-6EF0-4126-8372-A5A6A54F56D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ABC31D9-6EF0-4126-8372-A5A6A54F56D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7ABC31D9-6EF0-4126-8372-A5A6A54F56D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
